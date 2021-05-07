@@ -1,0 +1,36 @@
+-- =============================================================================
+-- Name : Postmortem.campaign -- Purpose : campaign for postmortem tutorial.
+--
+-- Copyright Relic Entertainment, Inc. All rights reserved.
+-- =============================================================================
+
+-- localized display name for the UI. DAT strings can be found in "UI.DAT".
+displayName = "Postmortem"
+
+-- 0 = Primary
+contentType = 0
+contentName = "playbalancing"
+contentOrdered = 1
+contentChooseText = "$3492" -- CHOOSE MISSION//
+
+ExtFilter = "campaign_playbalancing"
+contentRules = "SinglePlayer"	-- A DEFAULT that actually reads from SinglePlayerOptions.lua
+
+-- create a mission structure
+Mission =
+{
+	{
+		-- This next function tells the game to play Animatic "A00.lua" before the mission starts.
+--		postload =	function ()	playAnimatic("data:animatics/A00.lua", 1, 1)	end,
+		-- This tells the scrtip what Directory to load the mission from. In this case from "DataPlayBalancing\leveldata\campaign\playbalancing\testlevel".
+		directory = "testlevel",
+		-- This tells the script what ".lua" file to load.
+		level = "testlevel.level",
+		-- This tells the game what happens when the mission ends.
+		postlevel =	function (bWin)	if (bWin == 1) then	postLevelComplete()	end	end,
+		-- Used in the Campaign Description Menu.
+		displayName = "Test Level",
+		-- Used in the Campaign Description Menu.
+		description = "PlayBalancing",
+	},
+}

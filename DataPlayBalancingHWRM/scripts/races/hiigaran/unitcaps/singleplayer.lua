@@ -1,0 +1,11 @@
+supplyLimit("Fighter", 250);
+supplyLimit("Corvette", 250);
+supplyLimit("Frigate", 250);
+supplyLimit("Capital", 250);
+supplyLimit("Utility", 250);
+supplyLimit("Platform", 250);
+supplyLimit("Mothership", 250);
+supplyLimit("SinglePlayerMisc", 250);
+supplyLimit("CaptureFrigate", 250);
+supplyLimit("Mover", 250);
+supplyLimit("SPMovers", 250);

@@ -1,0 +1,47 @@
+dofilepath("data:PlayBalancing_Config.lua")
+
+levelDesc = "Singleplayer Play Balancing Map"
+maxPlayers = 3
+
+player = {}
+player[0] = {id = 0,  name = "hiigaran", resources = 0,  raceName = "hiigaran", startPos = 0,}
+player[1] = {id = 1, name = Player1Race, resources = 0, raceName = Player1Race, startPos = 0,}
+player[2] = {id = 2, name = Player2Race, resources = 0, raceName = Player2Race, startPos = 0,}
+
+function DetermChunk()
+--	addPebble("Pebble_1", {0, 0, DistanceBtwPoints,}, 0.0, 0.0, 0.0)
+--	addSquadron("my_axes", "coordinate axes", {0,0,0}, -1, {0,0,0}, 1, 0)
+	setWorldBoundsInner({0, 0, 0,}, {20000, 20000, 20000,})
+	setWorldBoundsOuter({0, 0, 0,}, {20000, 20000, 20000,})
+	local Point1Count = 1
+	local Point2Count = 1
+	local PointBool = 0
+	local ThirdRoot = ceil(NumberOfPoints^(1/3))
+	for i = 1, ThirdRoot do
+		local xCoord = DistanceBtwPoints * (i - ThirdRoot/2) - DistanceBtwPoints/2
+		for j = 1, ThirdRoot do
+			local yCoord = DistanceBtwPoints * (j - ThirdRoot/2) - DistanceBtwPoints/2
+			for k = 1, ThirdRoot do
+				local zCoord = DistanceBtwPoints * (k - ThirdRoot/2) - DistanceBtwPoints/2
+				if (PointBool == 0) then
+					addPoint("Player1Point" .. Point1Count, {xCoord, yCoord, zCoord,}, {0, 0, 0,})
+					Point1Count = Point1Count + 1
+					PointBool = 1
+				else
+					addPoint("Player2Point" .. Point2Count, {xCoord, yCoord, zCoord,}, {0, 0, 0,})
+					Point2Count = Point2Count + 1
+					PointBool = 0
+				end
+			end
+		end
+	end
+end
+
+function NonDetermChunk()
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(1000, 25000)
+--	setDefaultMusic("")
+	loadBackground("ez08")
+end
